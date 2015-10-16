@@ -4,25 +4,29 @@ public class Calculator {
 
 	public static int add(String text)
 	{
-		if(text.equals(""))
-		{
-			return 0;
-		}
-
 		if(text.contains("-"))
 		{
 			negativeNumbers(text);
 		}
 
-		//if something like this //
-
-		if(text.contains(",") || text.contains("\n"))
+		if(text.equals(""))
+		{
+			return 0;
+		}
+		else if(text.contains("//"))
+		{
+			return sum(newDelimeter(text));
+		}
+		else if(text.contains(",") || text.contains("\n"))
 		{
 			return sum(splitNumbers(text));
 		}
 		else
+		{
 			return 1;
+		}
 	}
+
 
 	private static int toInt(String number)
 	{
@@ -32,6 +36,16 @@ public class Calculator {
 	private static String[] splitNumbers(String numbers)
 	{
 	    return numbers.split(",|\n");
+	}
+
+	private static String[] newDelimeter(String numbers)
+	{
+		String newDelimeter = numbers.substring(2,3);
+		numbers = numbers.substring(3);
+		numbers = numbers.replaceAll("\n","");
+		numbers = numbers.replaceAll(newDelimeter,",");
+
+		return numbers.split(",");
 	}
 
 	private static void negativeNumbers(String numbers) throws IllegalArgumentException
@@ -46,7 +60,6 @@ public class Calculator {
 				message = message + ",";
 			}
 		}
-		throw new IllegalArgumentException(message);
 	}
 
     private static int sum(String[] numbers)
@@ -61,7 +74,4 @@ public class Calculator {
 		}
 		return total;
     }
-
-
-
 }

@@ -45,14 +45,21 @@ public class CalculatorTest {
     	assertEquals(6, Calculator.add("1,2\n3")); 
     }
 
-    /*//6
+    //6
     @Test
     public void testDiffDelimeter()
     {
-    	assertEquals(5, Calculator.add("//;2\n3")); 
-    }*/
+        assertEquals(3, Calculator.add("//;\n1;2")); 
+    }
 
     //7
+    @Test
+    public void testDiffDelimeter2()
+    {
+        assertEquals(8, Calculator.add("//;\n1;2;3,2")); 
+    }
+
+    //8
     @Test
     public void testNegativNumber()
     {
@@ -66,7 +73,7 @@ public class CalculatorTest {
     	}
     }
 
-    //8
+    //9
     @Test
     public void testToBigNumber()
     {
